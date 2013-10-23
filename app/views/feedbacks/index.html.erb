@@ -1,0 +1,13 @@
+<h1>View All Rewviews for 
+	<%= @all_feedbacks.where(:app_ame)first.app_id %></h1>
+
+<h1>Welcome to Devnet!</h1>
+<% if @all_feedbacks.blank? %>
+  <p>Ooops! No data to display!!</p>
+<% else %>
+  <% @all_feedbacks.each do |current_feedback| %>
+  <h2><%= current_app.review_text %></h2> <br>
+  <h3><%= current_app.app_id %></h3> <br>
+  <h3><%= current_app.id %></h3> <br>  
+  <% end %>
+<% end %>  

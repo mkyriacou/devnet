@@ -1,0 +1,9 @@
+<h1><%= @this_app.app_name %></h1>
+<p><%= @this_app.app_desription %></p>
+<img src="<%= @this_app.app_image %>" height="200px">
+<p><a href="<%= @this_app.app_link %>"><%= @this_app.app_link %></a></p>
+<p><a href="<%= @this_app.git_link %>"><%= @this_app.git_link %></a></p>
+<p><%= link_to "Edit App Details", "/apps/#{@this_app.id}/edit" %></p>
+
+<p><%= link_to "Create A Review", "/apps/#{@this_app.id}/feedbacks/new" %></p>
+<p><%= link_to "See Full List", apps_path %></p>

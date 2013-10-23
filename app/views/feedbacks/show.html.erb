@@ -1,0 +1,9 @@
+<h1>Made it to show feedback screen!</h1>
+<br><p>The Revew : <%= @this_feedback.review_text %>!</p>
+<br><p>The REview id: <%= @this_feedback.id %></p>
+<br><p>The App id: <%= @this_feedback.app_id %></p>
+<br><p>The App: <%= App.find(@this_feedback.app_id).app_name %></p>
+
+<%= link_to "Edit Review", "/apps/#{@this_feedback.app_id}/feedbacks/#{@this_feedback.id}/edit" %>
+<%= link_to "DELETE Review", "/apps/#{@this_feedback.app_id}/feedbacks/#{@this_feedback.id}", method: :delete %>
+

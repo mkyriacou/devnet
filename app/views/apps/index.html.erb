@@ -1,0 +1,12 @@
+<h1>Welcome to Devnet!</h1>
+<h2>Select an App to review!</h2>
+<% if @apps.blank? %>
+  <p>Ooops! No data to display!!</p>
+<% else %>
+  <% @apps.each do |current_app| %>
+    <a href="/apps/<%= current_app.id %>/show"><%= current_app.app_name %></a><br>
+    <p><%= link_to "Delete", "/apps/#{current_app.id}/delete", method: :delete %></p>
+    <br><p>--------------------------------</p>
+  <% end %>
+<% end %>  
+<p><%= link_to "ADD AN APP", new_app_path %></p>

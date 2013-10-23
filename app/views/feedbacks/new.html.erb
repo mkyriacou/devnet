@@ -1,0 +1,11 @@
+<% local_app_id = @new_feedback.app_id %>
+
+<h1>Writing A Review for 
+  <%= App.find(local_app_id).app_name %>
+	
+</h1>
+<form method="post" action="/apps/<%= local_app_id %>/feedbacks/create">
+  <input type="text" height="500px" width="500px" placeholder="enter your review here" name="new_review[review_text]">
+  <input type="text" value="<%= local_app_id %>" name="new_review[app_id]">
+  <input type="submit">
+</form>
