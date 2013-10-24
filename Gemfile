@@ -6,8 +6,12 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
-gem 'sqlite3'
-gem 'pry'
+  gem 'sqlite3'
+  gem 'pry'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'bcrypt-ruby', '~> 3.0.0'
