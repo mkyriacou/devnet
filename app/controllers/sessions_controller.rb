@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
 
   def index
     # Assumes User is logged into a session
+    
   end
 
 

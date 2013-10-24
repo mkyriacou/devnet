@@ -1,12 +1,8 @@
 class FeedbacksController < ApplicationController
 
   def index
-    
-    @all_feedbacks = Feedback.all
-
-    #this doesn't work!
-    @new_feedback.app_id = where(:id => params[:id])
-
+    # bindings.pry
+    @all_feedbacks = Feedback.where(app_id: params[:id])    
   end
 
   def new
@@ -23,7 +19,6 @@ class FeedbacksController < ApplicationController
 
   def show
     @this_feedback = Feedback.find(params[:id])
-# <br><%= App.find(@this_feedback.app_id).app_name %>
   end
 
   def edit

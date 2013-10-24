@@ -2,10 +2,18 @@
 
 <b>I thought the App...</b>
 <ul>
-  <li><%= "Fulfills a practical purpose." if @this_feedback.useful_vote %>
-  <li><%= "Is fun and or a pleasure to use." if @this_feedback.enjoyable_vote %>
-  <li><%= "Exhibits sleek design." if @this_feedback.sleek_vote %>
-  <li><%= "Exhibits a smooth interaction." if @this_feedback.ui_vote %>
+	<% if @this_feedback.useful_vote %>
+    <li>"Fulfills a practical purpose." </li>
+	<% end %>
+	<% if @this_feedback.enjoyable_vote %>
+    <li>"Is fun and/or a pleasure to use." </li>
+	<% end %>
+	<% if @this_feedback.sleek_vote %>
+    <li>"Exhibits sleek design." </li>
+	<% end %>
+	<% if @this_feedback.ui_vote %>
+    <li>"Exhibits a smooth interaction." </li>
+	<% end %>
 </ul>
 
 <p>Great Features: <%= @this_feedback.good_text %></p>

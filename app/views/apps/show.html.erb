@@ -1,6 +1,6 @@
 <h1><%= @this_app.app_name %></h1>
 <p><%= @this_app.app_description %></p>
-<p>created by <%= @this_app.user_id %></p>
+<p>created by <%= User.find(@this_app.user_id).username %></p>
 <img src="<%= @this_app.app_image %>" height="200px">
 <p><a href="<%= @this_app.app_link %>"><%= @this_app.app_link %></a></p>
 <p><a href="<%= @this_app.git_link %>"><%= @this_app.git_link %></a></p>

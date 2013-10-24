@@ -35,7 +35,7 @@ class AppsController < ApplicationController
     updated_app_details.update_attributes(params[:edited_app])
 
     # redirect
-    redirect_to show_app_path(updated_app_details)
+    redirect_to app_path(updated_app_details)
   end  
 
   def destroy

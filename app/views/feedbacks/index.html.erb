@@ -1,12 +1,28 @@
-<h1>View All Rewviews for 
-	<%= @all_feedbacks.where(:app_ame)first.app_id %></h1>
+<h1>Viewing All Reviews for <%= @all_feedbacks.first.app_name %></h1>
 
-<h1>Welcome to Devnet!</h1>
 <% if @all_feedbacks.blank? %>
   <p>Ooops! No data to display!!</p>
 <% else %>
-  <% @all_feedbacks.each do |current_feedback| %>
-  <h2><%= current_app.review_text %></h2> <br>
+  <%  @all_feedbacks.each do |current_feedback| %>
+	  <ul>
+		<% if current_feedback.useful_vote %>
+	    <li>"Fulfills a practical purpose." </li>
+		<% end %>
+		<% if current_feedback.enjoyable_vote %>
+	    <li>"Is fun and/or a pleasure to use." </li>
+		<% end %>
+		<% if current_feedback.sleek_vote %>
+	    <li>"Exhibits sleek design." </li>
+		<% end %>
+		<% if current_feedback.ui_vote %>
+	    <li>"Exhibits a smooth interaction." </li>
+		<% end %>
+	</ul>
+
+	<p>Great Features: <%= current_feedback.good_text %></p>
+	<p>Issues & Areas for Improvement: <%= current_feedback.bad_text %></p>
+	<p>General Observations and Suggestions: <%= current_feedback.suggestions_text %></p>
+
   <h3><%= current_app.app_id %></h3> <br>
   <h3><%= current_app.id %></h3> <br>  
   <% end %>
