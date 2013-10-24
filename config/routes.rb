@@ -1,6 +1,6 @@
 Devnet::Application.routes.draw do
 
-  get '/'     => "apps#index"
+  get '/'     => "sessions#index"
   # landing page and show all
   get '/apps' => "apps#index"
 
@@ -23,7 +23,13 @@ Devnet::Application.routes.draw do
 
   # -------------------------- Session routes
 
-  resources :sessions#, only [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create]
+  get '/logout' => "sessions#destroy"
+
+
+  # -------------------------- User routes
+
+  resources :users
 
   # get  '/feedbacks'          => "feedbacks#index"
   # get  '/feedbacks/new'      => "feedbacks#new", as: 'new_feedback'

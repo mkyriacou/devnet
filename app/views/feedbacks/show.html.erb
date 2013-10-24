@@ -7,3 +7,6 @@
 <%= link_to "Edit Review", "/apps/#{@this_feedback.app_id}/feedbacks/#{@this_feedback.id}/edit" %>
 <%= link_to "DELETE Review", "/apps/#{@this_feedback.app_id}/feedbacks/#{@this_feedback.id}", method: :delete %>
 
+<%= link_to "Back to " + App.find(@this_feedback.app_id).app_name + " page", "/apps/#{@this_feedback.app_id}/show" %>
+
+<%= link_to "View other Apps", "/apps" %>

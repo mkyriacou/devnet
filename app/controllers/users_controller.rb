@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  include SessionsHelper
   def show
     @user = User.find(params[:id])
   end
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Welcome to the DevNet app!"
       sign_in @user
+      #taking @ away but don't know why
       redirect_to @user
     else
       render'new'

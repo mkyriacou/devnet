@@ -1,0 +1,27 @@
+<h1>Welcome to DevNet</h1>
+<h2>  An Open Source Project by Great Big Enterprises</h2>
+
+
+<p>WOO HOO!!! Logged in as <%= current_user.username %> </p>
+<%= link_to "Logout", '/logout' %>
+
+
+<h2>My Account</h2>
+  <ul>
+    <li><%= link_to "Feedback I've Given others", '' %></li>
+    <li><%= link_to "Edit Account Details", '' %></li>
+  </ul>
+
+
+<h2>My App</h2>
+  <ul>
+    <li><%= link_to "App Details", '' %></li>
+    <li><%= link_to "Community Feedback", '' %></li>
+  </ul>
+
+<h2>My Community</h2>
+  <ul>
+  	<li><%= link_to "Invite Contacts to review", '#' %></li>
+    <li><%= link_to "Review a New App", '' %></li>
+    <li><%= link_to "My Reviews", '' %></li>
+  </ul>

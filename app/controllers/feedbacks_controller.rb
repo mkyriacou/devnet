@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
 
   def index
+    
     @all_feedbacks = Feedback.all
 
     #this doesn't work!

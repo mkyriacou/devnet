@@ -1,8 +1,12 @@
 class AppsController < ApplicationController
+  include AppsHelper
 
   def index
     
   	@apps = App.all
+
+    
+
   end
 
   def new
