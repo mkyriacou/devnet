@@ -17,7 +17,7 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-  	my_new_review = Feedback.create(params[:new_review])
+  	my_new_review = Feedback.create(params[:new_review])    
   	redirect_to "/apps/#{my_new_review.app_id}/feedbacks/#{my_new_review.id}/show"
   end
 

@@ -14,10 +14,9 @@ class AppsController < ApplicationController
 
   def create
   	new_app_object = App.create(params[:new_app])
-
-  	# new_app_object = App.new(params[:new_app]).save
-
-  	redirect_to show_app_path(new_app_object)
+  	# binding.pry
+    redirect_to app_path(new_app_object) 
+    #(new_app_object)
   end
 
   def show

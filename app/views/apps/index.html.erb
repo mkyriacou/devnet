@@ -5,6 +5,7 @@
 <% else %>
   <% @apps.each do |current_app| %>
     <a href="/apps/<%= current_app.id %>/show"><%= current_app.app_name %></a><br>
+    <img src="<%= current_app.app_image %>" height="100px">
     <p><%= link_to "Delete", "/apps/#{current_app.id}/delete", method: :delete %></p>
     <br><p>--------------------------------</p>
   <% end %>

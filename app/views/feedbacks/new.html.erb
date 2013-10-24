@@ -3,10 +3,22 @@
 <h1>Reviewing <%= App.find(local_app_id).app_name %> </h1>
 
 <form method="post" action="/apps/<%= local_app_id %>/feedbacks/create">
+  <b>App-At-A-Glance (tick all that apply) - please be honest but fair</b>
+  <input type="checkbox" placeholder="Provides a useful practical value" name="new_review[useful_vote]">
+  <input type="checkbox" placeholder="Fun / a pleasure to use" name="new_review[enjoyable_vote]">
+  <input type="checkbox" placeholder="Sleek design" name="new_review[sleek_vote]">
+  <input type="checkbox" placeholder="Smoothness of UI Interaction" name="new_review[ui_vote]">
 
-  <input type="text" height="500px" width="500px" placeholder="enter your review here" name="new_review[review_text]">
+  <b>Share Your Thoughts..</b>
+  <input type="text" placeholder="Great Features" name="new_review[good_text]">
+
+  <input type="text" placeholder="Issues and Areas for Improvement" name="new_review[bad_text]">
+
+  <input type="text" placeholder="General Observations and Suggestions" name="new_review[suggestions_text]">
+
   <input type="hidden" value="<%= local_app_id %>" name="new_review[app_id]">
-  <input type="hidden" value="<%= current_user.id %>" name="new_review[reviewer_id]">
+  <input type="hidden" value="<%= current_user.id %>" name="new_review[user_id]">
+
   <input type="submit">
 
 </form>

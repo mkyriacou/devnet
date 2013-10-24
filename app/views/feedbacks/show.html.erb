@@ -1,8 +1,20 @@
-<h1>Made it to show feedback screen!</h1>
-<br><p>The Revew : <%= @this_feedback.review_text %>!</p>
+<h1>GREAT!  Here's your review for <%= App.find(@this_feedback.app_id).app_name %></h1> 
+
+<b>I thought the App...</b>
+<ul>
+  <li><%= "Fulfills a practical purpose." if @this_feedback.useful_vote %>
+  <li><%= "Is fun and or a pleasure to use." if @this_feedback.enjoyable_vote %>
+  <li><%= "Exhibits sleek design." if @this_feedback.sleek_vote %>
+  <li><%= "Exhibits a smooth interaction." if @this_feedback.ui_vote %>
+</ul>
+
+<p>Great Features: <%= @this_feedback.good_text %></p>
+<p>Issues & Areas for Improvement: <%= @this_feedback.bad_text %></p>
+<p>General Observations and Suggestions: <%= @this_feedback.suggestions_text %></p>
+
 <br><p>The REview id: <%= @this_feedback.id %></p>
 <br><p>The App id: <%= @this_feedback.app_id %></p>
-<br><p>The App: <%= App.find(@this_feedback.app_id).app_name %></p>
+<br><p>The App: </p>
 
 <%= link_to "Edit Review", "/apps/#{@this_feedback.app_id}/feedbacks/#{@this_feedback.id}/edit" %>
 <%= link_to "DELETE Review", "/apps/#{@this_feedback.app_id}/feedbacks/#{@this_feedback.id}", method: :delete %>

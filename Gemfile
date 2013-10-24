@@ -5,7 +5,11 @@ gem 'rails', '3.2.14'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :development do
 gem 'sqlite3'
+gem 'pry'
+end
+
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 #gem 'acts_as_votable', '~> 0.7.1'

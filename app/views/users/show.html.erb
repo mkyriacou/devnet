@@ -1,8 +1,8 @@
 <h1>Welcome to DevNet</h1>
-<h2>  An Open Source Project by Great Big Enterprises</h2>
+<p>  An Open Source Project by</p> 
+<img src="http://www.great-big.com/uploads/1/8/5/7/18577644/943454.jpg" height="100px">
 
-
-<p>WOO HOO!!! Logged in as <%= current_user.username %> </p>
+<p>Logged in as <%= current_user.username %> </p>
 <%= link_to "Logout", '/logout' %>
 
 
@@ -14,14 +14,61 @@
 
 
 <h2>My App</h2>
-  <ul>
-    <li><%= link_to "App Details", '' %></li>
-    <li><%= link_to "Community Feedback", '' %></li>
+  <ul>    
+      <% if @app.blank? %>
+        <li><%= link_to "POST an App", '/apps/new' %></li>
+      <% else %>
+        <li><%= link_to "EDIT details", '' %></li>
+        <li><%= link_to "EXPLORE & INTERACT with your reviewers!", '' %></li>
+      <% end %>
   </ul>
 
 <h2>My Community</h2>
   <ul>
-  	<li><%= link_to "Invite Contacts to review", '#' %></li>
-    <li><%= link_to "Review a New App", '' %></li>
-    <li><%= link_to "My Reviews", '' %></li>
+    <li><%= link_to "REVIEW a new app", '/apps' %></li>
+    <li><%= link_to "VIEW my community", '' %></li>
+  	<li><%= link_to "INVITE more contacts to join your community", '#' %></li>
   </ul>
+
+
+
+
+<h1><%= @app.app_name %></h1>
+<p><%= @app.app_description %></p>
+<p>created by <%= @app.user_id %></p>
+<img src="<%= my_app.app_image %>" height="200px">
+<p><a href="<%= my_app.app_link %>"><%= @app.app_link %></a></p>
+<p><a href="<%= my_app.git_link %>"><%= @app.git_link %></a></p>
+<p><%= link_to "Edit App Details", "/apps/#{my_app.id}/edit" %></p>
+
+<p><%= link_to "Create A Review", "/apps/#{my_app.id}/feedbacks/new" %></p>
+<p><%= link_to "See Full List", apps_path %></p>
+
+
+
+
+
+
+
+
+
+<% @app.feedbacks.each do |this_feedback| %>
+<h3> Review from User.find(this_feedback.user_id).username %> </h3>
+  <b>I thought the App...</b>
+  <ul>
+    <li><%= "Fulfills a practical purpose."    if this_feedback.useful_vote %>
+    <li><%= "Is fun and or a pleasure to use." if this_feedback.enjoyable_vote %>
+    <li><%= "Exhibits sleek design."           if this_feedback.sleek_vote %>
+    <li><%= "Exhibits a smooth interaction."   if this_feedback.ui_vote %>
+  </ul>
+  <p>Great Features:                       "<%= @this_feedback.good_text %>"</p>
+  <p>Issues & Areas for Improvement:       "<%= @this_feedback.bad_text %>"</p>
+  <p>General Observations and Suggestions: "<%= @this_feedback.suggestions_text %>"</p>
+  <p>---------------------------------</p>
+  <br>
+<% end %>
+
+
+
+
+

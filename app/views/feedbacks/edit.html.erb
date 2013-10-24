@@ -1,6 +1,7 @@
-<h1>Edit Feedback for <%= App.find(@this_feedback.app_id).app_name %></h1>
-
 <% local_app_id = @this_feedback.app_id %>
+
+<h1>Edit Feedback for <%= App.find(local_app_id).app_name %></h1>
+
 
 <h1>Updating Review for 
   <%= App.find(local_app_id).app_name %>
@@ -9,5 +10,7 @@
 <form method="post" action="/apps/<%= local_app_id %>/feedbacks/<%= @this_feedback.id %>/update">
   <input type="text" size="50px 50px" value="<%= @this_feedback.review_text %>" name="new_review[review_text]">
   <input type="hidden" value="<%= local_app_id %>" name="new_review[app_id]">
+  <input type="hidden" value="<%= @this_feedback.user_id %>" name="new_review[user_id]">
+
   <input type="submit">
 </form>

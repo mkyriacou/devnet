@@ -4,12 +4,12 @@ Devnet::Application.routes.draw do
   # landing page and show all
   get '/apps' => "apps#index"
 
-  get  '/apps/new'      => "apps#new",  as: 'new_app'
-  post '/apps/create'   => "apps#create"
-  get  '/apps/:id/show' => "apps#show", as: 'show_app'
-  get  '/apps/:id/edit' => "apps#edit", as: 'edit_app'
-  post  '/apps/:id/update' => "apps#update"
-  delete  '/apps/:id/delete' => "apps#destroy"  
+  get    '/apps/new'        => "apps#new",  as: 'new_app'
+  post   '/apps'            => "apps#create"
+  get    '/apps/:id'        => "apps#show", as: 'app'
+  get    '/apps/:id/edit'   => "apps#edit", as: 'edit_app'
+  post   '/apps/:id/update' => "apps#update"
+  delete '/apps/:id/delete' => "apps#destroy"  
 
   #--------------------------- Nested routing
  

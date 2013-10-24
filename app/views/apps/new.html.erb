@@ -1,10 +1,11 @@
-<form method="post" action="create">
+<h1>Enter your App Details <%= current_user.username %></h1>
+<form method="post" action="/apps">
 	<input type="text" placeholder="enter app name" name="new_app[app_name]"> 
     <br><input type="text" placeholder="enter a description" name="new_app[app_description]">
-    <br><input type="hidden" value="current_user.id" name="new_app[owner_id]">
+    <br><input type="hidden" value="<%= current_user.id %>" name="new_app[user_id]">
 
     <br><input type="url" placeholder="enter an image URL" name="new_app[app_image]">
 	<br> <input type="url" placeholder="enter app URL" name="new_app[app_link]">
-	<br><input type="url" placeholder="enter app URL" name="new_app[git_link]">
+	<br><input type="url" placeholder="enter GIT URL" name="new_app[git_link]">
 	<br><button type="submit">Add My App!</button>
 </form>

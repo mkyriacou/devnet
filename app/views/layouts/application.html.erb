@@ -9,6 +9,16 @@
 <body>
 
 <%= yield %>
+<% if defined?current_user.username %>
+  <%= "Logged in as #{current_user.username}" %>
+  <br>
+  <%= link_to "Logout", '/logout' %>
+<% else %>
+  <%= link_to "Sign Up (its FREE!)", '/users/new' %>
+  <br>
+  <%= link_to "Log In", '/sessions/new' %>
+<% end %>
+
 
 </body>
 </html>

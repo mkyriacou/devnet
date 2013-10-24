@@ -4,8 +4,27 @@
 <h1>DevNet 1.0</h1>
 <h2>Comarderie Collaboration Creation</h2>
 
-<%= link_to "Sign Up (its FREE!)", '/users/new' %>
+<p>my app details</p>
+<p>view feedback</p>
 
-<%= link_to "Log In", '/sessions/new' %>
 
-<%= link_to "Logout", '/logout' %>
+
+
+
+
+
+
+
+
+
+<% if @apps.blank? %>
+  <p>You don't have an app posted yet.  <%= link_to "POST your App HERE!", '/apps/new' %></p>
+<% else %>
+  <% @apps.each do |current_app| %>
+    <a href="/apps/<%= current_app.id %>/show"><%= current_app.app_name %></a><br>
+    <img src="<%= current_app.app_image %>" height="100px">
+    <p><%= link_to "Delete", "/apps/#{current_app.id}/delete", method: :delete %></p>
+    <br><p>--------------------------------</p>
+  <% end %>
+<% end %>  
+<p>my reviews</p>

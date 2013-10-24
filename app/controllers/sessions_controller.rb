@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   include SessionsHelper
 
+
+
   def new
   end
 
@@ -11,6 +13,12 @@ class SessionsController < ApplicationController
        # User authenticate will take the encrypted password from the DB, decrypt it and compare to the entererd password value...
        # Create the session
        # We dont' want a ton of logic in our controllers so we are going to abstract that away to the sessions_helper.rb
+      #make the instance var available in /users/show
+      # @app = App.where(user_id: user.id).take
+      # @app.user.conditions({:user_id})
+      
+      # raise @app.inspect
+      
 
       sign_in user
       redirect_to "/users/#{user.id}"
@@ -20,6 +28,12 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+
+
+  def index
+    # Assumes User is logged into a session
+  end
+
 
   def destroy
       sign_out
