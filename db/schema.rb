@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023174122) do
+ActiveRecord::Schema.define(:version => 20131024021522) do
 
   create_table "apps", :force => true do |t|
     t.string   "app_name"
@@ -19,20 +19,23 @@ ActiveRecord::Schema.define(:version => 20131023174122) do
     t.string   "app_image"
     t.string   "app_link"
     t.string   "git_link"
-    t.integer  "owner_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "user_id"
   end
 
   create_table "feedbacks", :force => true do |t|
-    t.string   "review_text"
-    t.integer  "reviewer_id"
     t.integer  "app_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.text     "good_text"
     t.text     "bad_text"
     t.text     "suggestions_text"
+    t.integer  "user_id"
+    t.boolean  "useful_vote"
+    t.boolean  "enjoyable_vote"
+    t.boolean  "sleek_vote"
+    t.boolean  "ui_vote"
   end
 
   create_table "users", :force => true do |t|
@@ -42,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20131023174122) do
     t.string   "remember_token"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "karma_points"
   end
 
   create_table "votes", :force => true do |t|

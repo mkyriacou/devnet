@@ -1,6 +1,6 @@
 module AppsHelper
 
-  def sum_bools(@app) 
+  def sum_bools(app) 
   	# @app = App.find(app_id)
     # INPUT: assumes an app instance has been passed in @app
     # OUTPUT: returns hash of bool totals

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the DevNet app!"
       sign_in @user
       #taking @ away but don't know why
-      redirect_to @user
+      redirect_to "/users/#{current_user.id}"
     else
       render'new'
     end
