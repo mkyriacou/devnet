@@ -13,3 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+mk_sign_up() {
+  
+}
+mk_sign_in() {
+  
+}
+mk_logout {
+
+}
+

@@ -1,10 +1,18 @@
 <h1><%= @this_app.app_name %></h1>
 <p><%= @this_app.app_description %></p>
+<p><img src="<%= User.find(@this_app.user_id).img_link %>" height="50px"></p>
 <p>created by <%= User.find(@this_app.user_id).username %></p>
 <img src="<%= @this_app.app_image %>" height="200px">
-<p><a href="<%= @this_app.app_link %>"><%= @this_app.app_link %></a></p>
-<p><a href="<%= @this_app.git_link %>"><%= @this_app.git_link %></a></p>
-<p><%= link_to "Edit App Details", "/apps/#{@this_app.id}/edit" %></p>
 
-<p><%= link_to "Create A Review", "/apps/#{@this_app.id}/feedbacks/new" %></p>
-<p><%= link_to "See Full List", apps_path %></p>
+<%if current_user.id == @this_app.user_id %>
+  <p><%= link_to "View Community Reviews for this App", "/apps/#{@this_app.id}/feedbacks" %></p>
+  <p><%= link_to "Edit App Details", "/apps/#{@this_app.id}/edit" %></p>
+<%else%>
+  <p>1. <a href="<%= @this_app.app_link %>" target="_blank">TEST DRIVE the App so far...</a>(opens in a new tab)</p> 
+  <%if @this_app.git_link != ""%>
+    <p><a href="<%= @this_app.git_link %>">EXAMINE the code base so far ...</a></p>
+  <%end%>
+  <p>2. <%= link_to "REVIEW the App - help improve it!", "/apps/#{@this_app.id}/feedbacks/new" %></p>
+<%end%>
+
+<p><%= link_to "Explore Full App Directory", apps_path %></p>

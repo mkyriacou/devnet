@@ -7,23 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="navbar navbar-default" role="navigation">
+
 <% if defined?current_user.username %>  
+  
   <%= link_to "HOME", "/users/#{current_user.id}" %>
-<% end %>
-<br>
-<%= yield %>
-
-
-<% if defined?current_user.username %>
-  <%= "Logged in as #{current_user.username}" %>
-  <br>
+  Hello, <b><%= current_user.username %>!"</b>
   <%= link_to "Logout", '/logout' %>
 <% else %>
   <%= link_to "Sign Up (its FREE!)", '/users/new' %>
-  <br>
   <%= link_to "Log In", '/sessions/new' %>
 <% end %>
+</nav>
+
+<%= yield %>
 
 
+
+<div>(c) Great Big Enterprises Inc, 2013</div> 
 </body>
 </html>

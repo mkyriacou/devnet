@@ -2,7 +2,7 @@
 
 <h1>Reviewing <%= App.find(local_app_id).app_name %> </h1>
 
-<form method="post" action="/apps/<%= local_app_id %>/feedbacks/create">
+<form method="post" action="/apps/<%= local_app_id %>/feedbacks/create" class="input-group">
   <h2>App-At-A-Glance (tick all that apply) - please be honest but fair</h2>
   <br><input type="checkbox" placeholder="Provides a useful practical value" name="new_review[useful_vote]"> Provides a useful practical value
   <br><input type="checkbox" placeholder="Fun / a pleasure to use" name="new_review[enjoyable_vote]"> Fun / a pleasure to use

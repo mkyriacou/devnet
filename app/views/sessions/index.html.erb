@@ -1,29 +1,22 @@
-<p>from the bright, shiny whiteboards of </p>
-<h1>Great Big Enterprises</h1>
-<p>we present</p>
-<h1>DevNet 1.0</h1>
-<h2>Comarderie Collaboration Creation</h2>
-<p>Sessions > Index</p>
+<center><i>...from the bright, shiny whiteboards of 
+<img src="http://www.great-big.com/uploads/1/8/5/7/18577644/943454.jpg" height="75px"> 
+we present...</i></center>
+<div class="jumbotron">
+	<h1>DevNet 1.0</h1>
+	<p>The Creative Developers Comunity</p>
 
-
-<% if current_user.present? %>
-	<%= link_to "START", "/users/#{current_user.id}" %>
-<% end %>
-
-
-
-
-
-
-
-<% if @apps.blank? %>
-  <p>You don't have an app posted yet.  <%= link_to "POST your App HERE!", '/apps/new' %></p>
-<% else %>
-  <% @apps.each do |current_app| %>
-    <a href="/apps/<%= current_app.id %>/show"><%= current_app.app_name %></a><br>
-    <img src="<%= current_app.app_image %>" height="100px">
-    <p><%= link_to "Delete", "/apps/#{current_app.id}/delete", method: :delete %></p>
-    <br><p>--------------------------------</p>
-  <% end %>
-<% end %>  
-<p>my reviews</p>
+	
+		<% if current_user.present? %>
+		  <div class="btn btn-primary btn-lg">
+		  	<%= link_to "ENGAGE with the creative community!", "/users/#{current_user.id}" %>
+		  </div>
+	  <% else %>
+		  <div class="btn btn-default btn-lg">
+		  	<%= link_to "Sign In", "/sessions/new" %>
+		  </div>
+		  <div class="btn btn-primary btn-lg">
+		    <%= link_to "Sign Up", "/users/new" %>
+		  </div>
+	  <% end %>
+	
+</div>

@@ -1,88 +1,78 @@
-<h1>Welcome to DevNet</h1>
-<p>  An Open Source Project by</p> 
-<img src="http://www.great-big.com/uploads/1/8/5/7/18577644/943454.jpg" height="100px">
-<p>Users > Show</p>
-<p>Logged in as <%= current_user.username %> </p>
-<%= link_to "Logout", '/logout' %>
+<div border="2px">
+  <h1>Welcome to DevNet</h1>
+  <div align="center">An Open Source Project by  
+  <img src="http://www.great-big.com/uploads/1/8/5/7/18577644/943454.jpg" height="50px">
+  </div>
+</div>
+
+<div>
+  <div>
+    <div class="jumbotron">
+      <div class="container">
+      <h2>My App</h2>
+        <ul>    
+          <% if @app.blank? %>
+            <li><%= link_to "POST your App for community feedback!", '/apps/new' %></li>
+            <i>Post apps and write reviews to boost your standing in the development community.</i>
+          <% else %>
+            <table>      
+              <tr><th><%= @app.app_name %></th></tr>
+              <tr><td><%= @app.app_description %></td></tr>
+              <tr><td><i>created by <%= User.find(@app.user_id).username %></i></td></tr>
+              <tr><td><img src="<%= @app.app_image %>" height="100px"></td></tr>
+              <tr><td><a href="<%= @app.app_link %>">Link To My App</a></td></tr>
+              <tr><td><a href="<%= @app.git_link %>">Link to My Repo</a></td></tr>
+            </table>
+            <button type="button" class="btn btn-info"><%= link_to "EDIT details", "/apps/#{@app.id}" %></button>
+            <button type="button" class="btn btn-primary">EXPLORE reviews!</button>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="jumbotron">
+      <div class="container">
+      <h2>My Community<h2>
+      <button type="button" class="btn btn-info"><%= link_to "VIEW & REVIEW apps from other creative developers!", '/apps' %></button>
+      <button type="button" class="btn btn-primary"><%= link_to "BROWSE member profiles...", "/users" %></button>      
+    </div>
+    </div>
+  </div>
+</div>
 
 
-<h2>My Account</h2>
-  <ul>
-    <li><%= link_to "Feedback I've Given others", '' %></li>
-    <li><%= link_to "Edit Account Details", "/users/#{current_user.id}" %></li>
-  </ul>
-
-
-<h2>My App</h2>
-  <ul>    
-      <% if @app.blank? %>
-        <li><%= link_to "POST an App", '/apps/new' %></li>
-      <% else %>
-        <li><%= link_to "VIEW/EDIT details", "/apps/#{@app.id}" %></li>
-        <li><%= link_to "EXPLORE & INTERACT with your reviewers!", "/apps/#{@app.id}/feedbacks" %></li>
-      <% end %>
-  </ul>
-
-<h2>My Community</h2>
-  <ul>
-    <li><%= link_to "REVIEW a new app", '/apps' %></li>
-    <li><%= link_to "VIEW my community", '' %></li>
-  	<li><%= link_to "INVITE more contacts to join your community (UNDER CONSTRUCTION)", '#' %></li>
-  </ul>
-
-
-
-<% if @app.blank? %>
-  <p>Write apps to boost your standing in the deevelopment community. </p>
-<% else %>
-  <h1><%= @app.app_name %></h1>
-  <p><%= @app.app_description %></p>
-  <p>created by <%= User.find(@app.user_id).username %></p>
-  <img src="<%= @app.app_image %>" height="200px">
-  <p><a href="<%= @app.app_link %>"><%= @app.app_link %></a></p>
-  <p><a href="<%= @app.git_link %>"><%= @app.git_link %></a></p>
-  <p><%= link_to "Edit App Details", "/apps/#{@app.id}/edit" %></p>
-  <p><%= link_to "Create A Review", "/apps/#{@app.id}/feedbacks/new" %></p>
-
-  <% @app.feedbacks.each do |this_feedback| %>
-  <h3> Review from <%= User.find(this_feedback.user_id).username %> </h3>
-    <b>I thought the App...</b>
-    <ul>
-      <li><%= "Fulfills a practical purpose."    if this_feedback.useful_vote %>
-      <li><%= "Is fun and or a pleasure to use." if this_feedback.enjoyable_vote %>
-      <li><%= "Exhibits sleek design."           if this_feedback.sleek_vote %>
-      <li><%= "Exhibits a smooth interaction."   if this_feedback.ui_vote %>
-    </ul>
-    <p>Great Features:                       "<%= this_feedback.good_text %>"</p>
-    <p>Issues & Areas for Improvement:       "<%= this_feedback.bad_text %>"</p>
-    <p>General Observations and Suggestions: "<%= this_feedback.suggestions_text %>"</p>
-    <p>---------------------------------</p>
-    <br>
-  <% end %>
-
-    <h2>Feedback Summary</h2>
 
 <%
-tot_respondants = @app.feedbacks.size 
+  if (defined?@app.feedbacks.size) && (@app.feedbacks.size > 0) 
+    tot_respondants = @app.feedbacks.size 
 
-tot_useful = @my_bools[:useful_vote]
-tot_enjoyable = @my_bools[:enjoyable_vote]
-tot_sleek = @my_bools[:sleek_vote]
-tot_ui = @my_bools[:ui_vote]
+    tot_useful =    @my_bools[:useful_vote]
+    tot_enjoyable = @my_bools[:enjoyable_vote]
+    tot_sleek =     @my_bools[:sleek_vote]
+    tot_ui =        @my_bools[:ui_vote]
 
-useful_summary    = "#{tot_useful} (#{(100*tot_useful/tot_respondants).ceil}%)"
-enjoyable_summary = "#{tot_enjoyable} (#{(100*tot_enjoyable / tot_respondants).ceil}%)"
-sleek_summary     = "#{tot_sleek} (#{(100*tot_sleek     / tot_respondants).ceil}%)"
-ui_summary        = "#{tot_ui} (#{(100*tot_ui        / tot_respondants).ceil}%)"
+    useful_summary    = "#{tot_useful} (#{(100*tot_useful       /tot_respondants).ceil}%)"
+    enjoyable_summary = "#{tot_enjoyable} (#{(100*tot_enjoyable / tot_respondants).ceil}%)"
+    sleek_summary     = "#{tot_sleek} (#{(100*tot_sleek         / tot_respondants).ceil}%)"
+    ui_summary        = "#{tot_ui} (#{(100*tot_ui               / tot_respondants).ceil}%)"
+
 
 %>
+<h2>Feedback</h2>
+
+
+
+<div class="jumbotron">
+<h3>Feedback Summary</h3>
+
 <h4>Aggregated Votes</h4>
-<ul>
-  <li><%= useful_summary %>  Fulfills a practical purpose.
-  <li><%= enjoyable_summary %>  Is fun and or a pleasure to use.
-  <li><%= sleek_summary %>  Exhibits sleek design.
-  <li><%= ui_summary %>  A smooth interaction expereince.
-</ul>
+<table>
+  <tr><td><%= useful_summary %> <td> Fulfills a practical purpose. </tr>
+  <tr><td><%= enjoyable_summary %> <td> Is fun and or a pleasure to use. </tr>
+  <tr><td><%= sleek_summary %> <td> Exhibits sleek design. </tr>
+  <tr><td><%= ui_summary %> <td> A smooth interaction expereince. </tr>
+</table>
 
 
 <h4>Aggregated Comments</h4>
@@ -107,12 +97,43 @@ ui_summary        = "#{tot_ui} (#{(100*tot_ui        / tot_respondants).ceil}%)"
     <li><%= this_feedback.suggestions_text %></li>
   <% end %>
 </ul>
+</div>
 
+<div class="jumbotron">
 
+<h3>Feedback Details</h3>
 
+  <% @app.feedbacks.each do |this_feedback| %>
+  <h4> Review from <%= User.find(this_feedback.user_id).username %> </h4>
+    <h5>I thought the App...</h5>
+    <table>
 
-<% end %>
+      <%if this_feedback.useful_vote %>
+        <tr><td>"Fulfills a practical purpose."</tr>
+      <%end %> 
+      <%if this_feedback.enjoyable_vote %>
+        <tr><td>"Is fun and or a pleasure to use."</tr>
+      <%end %>
+      <%if this_feedback.sleek_vote %>
+        <tr><td>"Exhibits sleek design."</tr>
+      <%end %>
+      <%if this_feedback.ui_vote %>
+        <tr><td>"Exhibits a smooth interaction."</tr>
+      <%end   %>
+    </table>
+    <br>
+    <table>
 
+    <tr><td><b>Great Features:                       </b><td><i>"<%= this_feedback.good_text %>"</i></tr>
+    <tr><td><b>Issues & Areas for Improvement:       </b><td><i>"<%= this_feedback.bad_text %>"</i></tr>
+    <tr><td><b>General Observations and Suggestions: </b><td><i>"<%= this_feedback.suggestions_text %>"</i></tr>
+    </table>
+    <br>
+  <% end %>
 
+<%else%>
 
+    <div>No feedback received as yet!</div>
+<%end%>
 
+</div>

@@ -4,10 +4,11 @@
 <% else %>
   <% @apps.each do |current_app| %>
     <a href="/apps/<%= current_app.id %>"><%= current_app.app_name %></a><br>
-
-    <br><p> created by 
-    <img src="<%= current_app.app_image %>" height="100px">
-    <p><%= link_to "Delete", "/apps/#{current_app.id}/delete", method: :delete %></p>
-    <br><p>--------------------------------</p>
+    <img src="<%= current_app.app_image %>" height="300px">
+    <%if current_user.id == current_app.user_id %>
+      <i><%= link_to "Click to *REMOVE* My App from public listing...", "/apps/#{current_app.id}/delete", method: :delete %></i>
+      <br>
+    <%end%>  
+    <br>
   <% end %>
 <% end %>  

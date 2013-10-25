@@ -4,7 +4,7 @@ class AppsController < ApplicationController
   def index
     
   	@apps = App.all
-
+    @users = User.all
     
 
   end

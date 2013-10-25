@@ -1,0 +1,23 @@
+<h1>Developers from the DevNet Community</h1>
+<table>
+<% @all_users.each do |this_user| %>
+ 
+ 
+  <a href="/user/this_user.id"></a>
+ 
+ 	<tr>
+ 		<td>
+  <%= this_user.username %>
+ <td>
+ <% if this_user.img_link == "" 
+    img_src = "http://build18.ece.cmu.edu/wiki/images/thumb/6/62/Blank_profile.png/180px-Blank_profile.png"
+  else
+     img_src = this_user.img_link 
+  end
+  %>
+  <img src="<%= img_src %>" height="200px" border="1px">
+ 
+ </tr>
+<% end %>
+
+</table>

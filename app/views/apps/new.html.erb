@@ -1,10 +1,12 @@
 <h1>Enter your App Details <%= current_user.username %></h1>
-<form method="post" action="/apps">
+<form method="post" action="/apps" class="input-group">
 	<input type="text" placeholder="enter app name" name="new_app[app_name]"> 
     <br><input type="text" placeholder="enter a description" name="new_app[app_description]">
     <br><input type="hidden" value="<%= current_user.id %>" name="new_app[user_id]">
 
-    <br><input type="url" placeholder="enter an image URL" name="new_app[app_image]">
+    <br><input type="url" placeholder="enter an image URL" value="http://html5-demos.appspot.com/static/gdd11-modern-web-apps/images/cws-logo.png" name="new_app[app_image]">
+	
+
 	<br> <input type="url" placeholder="enter app URL" name="new_app[app_link]">
 	<br><input type="url" placeholder="enter GIT URL" name="new_app[git_link]">
 	<br><button type="submit">Add My App!</button>
