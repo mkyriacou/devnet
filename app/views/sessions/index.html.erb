@@ -6,9 +6,9 @@
 <p>Sessions > Index</p>
 
 
-
-<%= link_to "START", "/users/#{current_user.id}" %>
-
+<% if current_user.present? %>
+	<%= link_to "START", "/users/#{current_user.id}" %>
+<% end %>
 
 
 
