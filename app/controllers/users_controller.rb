@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @app = App.find_by_user_id(@user.id)
+    @my_bools = @app.sum_bools
+    # binding.pry
+    
 
   end
 

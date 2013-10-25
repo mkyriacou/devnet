@@ -32,41 +32,86 @@
 
 
 
+<% if @app.blank? %>
+  <p>Write apps to boost your standing in the deevelopment community. </p>
+<% else %>
+  <h1><%= @app.app_name %></h1>
+  <p><%= @app.app_description %></p>
+  <p>created by <%= User.find(@app.user_id).username %></p>
+  <img src="<%= @app.app_image %>" height="200px">
+  <p><a href="<%= @app.app_link %>"><%= @app.app_link %></a></p>
+  <p><a href="<%= @app.git_link %>"><%= @app.git_link %></a></p>
+  <p><%= link_to "Edit App Details", "/apps/#{@app.id}/edit" %></p>
+  <p><%= link_to "Create A Review", "/apps/#{@app.id}/feedbacks/new" %></p>
 
-<h1><%= @app.app_name %></h1>
-<p><%= @app.app_description %></p>
-<p>created by <%= @app.user_id %></p>
-<img src="<%= @app.app_image %>" height="200px">
-<p><a href="<%= @app.app_link %>"><%= @app.app_link %></a></p>
-<p><a href="<%= @app.git_link %>"><%= @app.git_link %></a></p>
-<p><%= link_to "Edit App Details", "/apps/#{@app.id}/edit" %></p>
+  <% @app.feedbacks.each do |this_feedback| %>
+  <h3> Review from <%= User.find(this_feedback.user_id).username %> </h3>
+    <b>I thought the App...</b>
+    <ul>
+      <li><%= "Fulfills a practical purpose."    if this_feedback.useful_vote %>
+      <li><%= "Is fun and or a pleasure to use." if this_feedback.enjoyable_vote %>
+      <li><%= "Exhibits sleek design."           if this_feedback.sleek_vote %>
+      <li><%= "Exhibits a smooth interaction."   if this_feedback.ui_vote %>
+    </ul>
+    <p>Great Features:                       "<%= this_feedback.good_text %>"</p>
+    <p>Issues & Areas for Improvement:       "<%= this_feedback.bad_text %>"</p>
+    <p>General Observations and Suggestions: "<%= this_feedback.suggestions_text %>"</p>
+    <p>---------------------------------</p>
+    <br>
+  <% end %>
 
-<p><%= link_to "Create A Review", "/apps/#{@app.id}/feedbacks/new" %></p>
+    <h2>Feedback Summary</h2>
+
+<%
+tot_respondants = @app.feedbacks.size 
+
+tot_useful = @my_bools[:useful_vote]
+tot_enjoyable = @my_bools[:enjoyable_vote]
+tot_sleek = @my_bools[:sleek_vote]
+tot_ui = @my_bools[:ui_vote]
+
+useful_summary    = "#{tot_useful} (#{(100*tot_useful/tot_respondants).ceil}%)"
+enjoyable_summary = "#{tot_enjoyable} (#{(100*tot_enjoyable / tot_respondants).ceil}%)"
+sleek_summary     = "#{tot_sleek} (#{(100*tot_sleek     / tot_respondants).ceil}%)"
+ui_summary        = "#{tot_ui} (#{(100*tot_ui        / tot_respondants).ceil}%)"
+
+%>
+<h4>Aggregated Votes</h4>
+<ul>
+  <li><%= useful_summary %>  Fulfills a practical purpose.
+  <li><%= enjoyable_summary %>  Is fun and or a pleasure to use.
+  <li><%= sleek_summary %>  Exhibits sleek design.
+  <li><%= ui_summary %>  A smooth interaction expereince.
+</ul>
+
+
+<h4>Aggregated Comments</h4>
+
+<p>Great Features: </p>
+<ul>
+  <% @app.feedbacks.each do |this_feedback| %>
+    <li><%= this_feedback.good_text %></li>
+  <% end %>
+</ul>
+
+<p>Issues & Areas for Improvement: </p>
+<ul>
+  <% @app.feedbacks.each do |this_feedback| %>
+    <li><%= this_feedback.bad_text %></li>
+  <% end %>
+</ul>
+
+<p>General Observations and Suggestions: </p>
+<ul>
+  <% @app.feedbacks.each do |this_feedback| %>
+    <li><%= this_feedback.suggestions_text %></li>
+  <% end %>
+</ul>
 
 
 
 
-
-
-
-
-
-<% @app.feedbacks.each do |this_feedback| %>
-<h3> Review from User.find(this_feedback.user_id).username %> </h3>
-  <b>I thought the App...</b>
-  <ul>
-    <li><%= "Fulfills a practical purpose."    if this_feedback.useful_vote %>
-    <li><%= "Is fun and or a pleasure to use." if this_feedback.enjoyable_vote %>
-    <li><%= "Exhibits sleek design."           if this_feedback.sleek_vote %>
-    <li><%= "Exhibits a smooth interaction."   if this_feedback.ui_vote %>
-  </ul>
-  <p>Great Features:                       "<%= this_feedback.good_text %>"</p>
-  <p>Issues & Areas for Improvement:       "<%= this_feedback.bad_text %>"</p>
-  <p>General Observations and Suggestions: "<%= this_feedback.suggestions_text %>"</p>
-  <p>---------------------------------</p>
-  <br>
 <% end %>
-
 
 
 

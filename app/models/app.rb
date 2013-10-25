@@ -24,7 +24,7 @@ class App < ActiveRecord::Base
     sleek_total = 0
     ui_total = 0
     
-    self.feedback.each do |this_feedback|
+    self.feedbacks.each do |this_feedback|
       useful_total+=1    if this_feedback.useful_vote
       enjoyable_total+=1 if this_feedback.enjoyable_vote
       sleek_total+=1     if this_feedback.sleek_vote

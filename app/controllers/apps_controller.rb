@@ -21,6 +21,8 @@ class AppsController < ApplicationController
 
   def show
   	@this_app = App.find(params[:id])
+    @my_bools = @this_app.sum_bools
+    # binding.pry
   end
 
   def edit

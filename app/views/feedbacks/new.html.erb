@@ -3,22 +3,22 @@
 <h1>Reviewing <%= App.find(local_app_id).app_name %> </h1>
 
 <form method="post" action="/apps/<%= local_app_id %>/feedbacks/create">
-  <b>App-At-A-Glance (tick all that apply) - please be honest but fair</b>
-  <input type="checkbox" placeholder="Provides a useful practical value" name="new_review[useful_vote]">
-  <br><input type="checkbox" placeholder="Fun / a pleasure to use" name="new_review[enjoyable_vote]">
-  <br><input type="checkbox" placeholder="Sleek design" name="new_review[sleek_vote]">
-  <br><input type="checkbox" placeholder="Smoothness of UI Interaction" name="new_review[ui_vote]">
-
-  <b>Share Your Thoughts..</b>
-  <input type="text" placeholder="Great Features" name="new_review[good_text]">
-
-  <input type="text" placeholder="Issues and Areas for Improvement" name="new_review[bad_text]">
-
-  <input type="text" placeholder="General Observations and Suggestions" name="new_review[suggestions_text]">
+  <h2>App-At-A-Glance (tick all that apply) - please be honest but fair</h2>
+  <br><input type="checkbox" placeholder="Provides a useful practical value" name="new_review[useful_vote]"> Provides a useful practical value
+  <br><input type="checkbox" placeholder="Fun / a pleasure to use" name="new_review[enjoyable_vote]"> Fun / a pleasure to use
+  <br><input type="checkbox" placeholder="Sleek design" name="new_review[sleek_vote]"> Sleek design
+  <br><input type="checkbox" placeholder="Smoothness of UI Interaction" name="new_review[ui_vote]"> Smoothness of UI Interaction
+  <br>
+  <h2>Share Your Thoughts..</h2>
+  <br><b>Great Features: </b><input type="text" placeholder="Great Features: " name="new_review[good_text]">
+  <br>
+  <br><b>Issues and Areas for Improvement: </b><input type="text" placeholder="Issues and Areas for Improvement" name="new_review[bad_text]">
+  <br>
+  <br><b>General Observations and Suggestions: </b><input type="text" placeholder="General Observations and Suggestions" name="new_review[suggestions_text]">
 
   <input type="hidden" value="<%= local_app_id %>" name="new_review[app_id]">
   <input type="hidden" value="<%= current_user.id %>" name="new_review[user_id]">
-
+  <br>
   <input type="submit">
 
 </form>
