@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "HOME", "/users/#{current_user.id}" %>
+<% if defined?current_user.username %>  
+  <%= link_to "HOME", "/users/#{current_user.id}" %>
+<% end %>
 <br>
 <%= yield %>
 
