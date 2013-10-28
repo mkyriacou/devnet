@@ -19,7 +19,7 @@ mk_sign_up() {
 mk_sign_in() {
   
 }
-mk_logout {
+mk_logout() {
 
 }
 
